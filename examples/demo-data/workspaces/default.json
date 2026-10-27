@@ -1,0 +1,11 @@
+{
+  "schemaVersion": 1,
+  "revision": 1,
+  "id": "default",
+  "name": "Demo",
+  "componentIds": [
+    "demo",
+    "palette",
+    "fx-rules"
+  ]
+}

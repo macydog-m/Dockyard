@@ -1,0 +1,153 @@
+import { _electron as electron } from 'playwright';
+import assert from 'node:assert/strict';
+import fs from 'node:fs/promises';
+import path from 'node:path';
+import { tmpdir } from 'node:os';
+import { createDemo } from './dockyard.mjs';
+import { setSmokeLanguage } from './smoke-language.mjs';
+import { smokeClipboard } from './smoke-clipboard.mjs';
+import { DockyardManager, ResourceRegistry } from '../packages/core/dist/index.js';
+
+const root = await fs.mkdtemp(path.join(tmpdir(), 'dockyard-configuration-'));
+const dataDir = path.join(root, 'data');
+const artifacts = path.resolve('output/playwright');
+await fs.mkdir(artifacts, { recursive: true });
+let app;
+try {
+  await createDemo(dataDir); await setSmokeLanguage(dataDir);
+  const manager = new DockyardManager(dataDir);
+  const workspace = (await manager.listWorkspaces()).workspaces.find(value => value.id === 'default');
+  await manager.importConfiguration('default', workspace.revision, { schemaVersion: 1, id: 'panel', name: '我的面板', type: 'configuration', items: [] });
+  const registry = new ResourceRegistry(dataDir, { workspaceId: 'default' });
+  const env = { ...process.env }; delete env.ELECTRON_RUN_AS_NODE;
+  app = await electron.launch({ args: [path.resolve('apps/desktop'), '--data-dir', dataDir], cwd: root, env });
+  const page = await app.firstWindow(); page.setDefaultTimeout(15000);
+  const errors = []; page.on('pageerror', error => errors.push(error.message));
+  const readClipboard = await smokeClipboard(app);
+  await page.getByRole('toolbar').getByRole('button', { name: '配置', exact: true }).click();
+  const panel = page.getByRole('region', { name: '配置面板', exact: true });
+  const presets = panel.getByRole('group', { name: '当前预设', exact: true });
+  assert.equal(await panel.getByRole('group', { name: '配置组件', exact: true }).count(), 0);
+  assert.equal(await panel.getByText('管理预设', { exact: true }).count(), 0);
+  assert.equal(await panel.getByText('当前生效配置', { exact: true }).count(), 0);
+  async function saved() { await panel.getByRole('status').filter({ hasText: '已自动保存' }).waitFor(); }
+  async function add(type, name, configure = async () => {}) {
+    await panel.getByRole('button', { name: '添加组件', exact: true }).click();
+    const dialog = page.getByRole('dialog', { name: '添加组件', exact: true });
+    await dialog.getByLabel('组件类型', { exact: true }).selectOption(type);
+    await dialog.getByLabel('名称', { exact: true }).fill(name);
+    await dialog.getByLabel('给 AI 的说明', { exact: true }).fill('使用此组件的信息执行任务。');
+    await configure(dialog);
+    await dialog.getByRole('button', { name: '保存', exact: true }).click();
+    await dialog.waitFor({ state: 'hidden' });
+  }
+  await add('toggle', '复用骨骼');
+  await add('checkbox', '循环播放');
+  await add('slider', '弹动强度', async dialog => { await dialog.getByLabel('步长', { exact: true }).fill('5'); await dialog.getByLabel('默认值', { exact: true }).fill('50'); });
+  await add('number', '时长', async dialog => { await dialog.getByLabel('默认值', { exact: true }).fill('2'); });
+  await add('text', '输出路径', async dialog => { await dialog.getByLabel('默认值', { exact: true }).fill('./output'); });
+  await add('color', '主题颜色', async dialog => { await dialog.getByLabel('默认值', { exact: true }).fill('#336699'); });
+  await add('select', '动画类型', async dialog => { await dialog.getByLabel('选项（每行一个）', { exact: true }).fill('待机\n行走'); });
+  await add('instruction', '制作规则', async dialog => { await dialog.getByLabel('文本规则', { exact: true }).fill('保持轮廓清晰。'); });
+  assert.equal((await registry.get('panel::$current')).items.length, 8);
+  await panel.getByRole('switch', { name: '复用骨骼', exact: true }).check();
+  await panel.getByRole('checkbox', { name: '循环播放', exact: true }).check();
+  await panel.getByRole('slider', { name: '弹动强度', exact: false }).fill('75');
+  await panel.getByLabel('主题颜色', { exact: true }).fill('#ff9900');
+  await panel.getByLabel('动画类型', { exact: true }).selectOption('行走');
+  await saved();
+  const applied = await registry.get('panel::$current');
+  assert.equal(applied.items.find(item => item.label === '弹动强度').value, 75);
+  assert.equal(applied.items.find(item => item.label === '主题颜色').value, '#ff9900');
+  assert.equal(applied.items.find(item => item.label === '循环播放').value, true);
+  assert.equal(applied.items.find(item => item.label === '动画类型').value, '行走');
+  assert.equal(applied.items.find(item => item.label === '弹动强度').aiInstructions, '使用此组件的信息执行任务。');
+  const rule = applied.items.find(item => item.label === '制作规则').target;
+  assert.equal((await registry.get(rule)).content, '保持轮廓清晰。');
+  const beforeConflict = (await manager.listWorkspaces()).workspaces.find(value => value.id === 'default');
+  const active = beforeConflict.configurations.panel.presets.find(value => value.id === beforeConflict.configurations.panel.activePresetId);
+  const bounceKey = active.items.find(item => item.label === '弹动强度').key;
+  await manager.updateConfiguration('default', 'panel', beforeConflict.revision, (await manager.listComponents()).find(value => value.id === 'panel').revision,
+    { type: 'saveValues', presetId: active.id, values: { ...active.values, [bounceKey]: 80 } });
+  await panel.getByRole('slider').fill('90');
+  await panel.getByText('自动保存失败，草稿已保留', { exact: true }).waitFor();
+  assert.equal(await panel.getByRole('slider').inputValue(), '90');
+  assert.equal((await registry.get('panel::$current')).items.find(item => item.key === bounceKey).value, 80);
+  await panel.getByRole('button', { name: '撤销修改', exact: true }).click();
+  await page.waitForFunction(() => document.querySelector('.configuration-fields input[type=range]')?.value === '80');
+  await panel.getByRole('slider').fill('75'); await saved();
+  await panel.getByRole('button', { name: '复制给 AI', exact: true }).click();
+  await page.getByText('配置引用已复制', { exact: true }).waitFor();
+  assert.equal(await readClipboard(), '请使用 Dockyard 中的配置 "panel::$current"。');
+  await page.screenshot({ path: path.join(artifacts, 'configuration-panel.png') });
+  async function create(name, copy = false) {
+    await panel.getByRole('button', { name: '新建预设', exact: true }).click();
+    await panel.getByLabel('预设名称', { exact: true }).fill(name);
+    if (copy) await panel.getByRole('checkbox', { name: '复制当前预设', exact: true }).check();
+    await panel.locator('form').getByRole('button', { name: '新建预设', exact: true }).click();
+    await presets.getByRole('radio', { name, exact: true }).waitFor();
+    await saved();
+  }
+  await create('空白预设');
+  assert.equal((await registry.get('panel::$current')).items.length, 0);
+  await add('text', '独有信息', async dialog => { await dialog.getByLabel('默认值', { exact: true }).fill('独立面板'); });
+  await presets.getByRole('radio', { name: '我的面板', exact: true }).click();
+  await panel.getByRole('slider').waitFor();
+  assert.equal(await panel.getByRole('slider').inputValue(), '75');
+  assert.equal(await panel.getByLabel('独有信息', { exact: true }).count(), 0);
+  await create('面板副本', true);
+  await panel.getByRole('button', { name: '编辑组件：弹动强度', exact: true }).click();
+  let editor = page.getByRole('dialog', { name: '编辑组件', exact: true });
+  await editor.getByLabel('项目说明', { exact: true }).fill('副本的独立说明');
+  await editor.getByRole('button', { name: '保存', exact: true }).click();
+  await editor.waitFor({ state: 'hidden' });
+  assert.equal((await registry.get('panel::$current')).items.find(item => item.label === '弹动强度').description, '副本的独立说明');
+  await panel.getByRole('button', { name: '编辑组件：主题颜色', exact: true }).click();
+  editor = page.getByRole('dialog', { name: '编辑组件', exact: true });
+  await editor.getByRole('button', { name: '删除组件', exact: true }).click();
+  await editor.getByRole('button', { name: '确认删除', exact: true }).click();
+  await editor.waitFor({ state: 'hidden' });
+  assert.equal((await registry.get('panel::$current')).items.length, 7);
+  await presets.getByRole('radio', { name: '我的面板', exact: true }).click();
+  await panel.getByLabel('主题颜色', { exact: true }).waitFor();
+  assert.equal((await registry.get('panel::$current')).items.length, 8);
+  assert.equal((await registry.get('panel::$current')).items.find(item => item.label === '弹动强度').description, '');
+  await presets.getByRole('radio', { name: '空白预设', exact: true }).click();
+  await panel.getByLabel('独有信息', { exact: true }).waitFor();
+  await panel.getByRole('button', { name: '删除当前预设', exact: true }).click();
+  await panel.getByRole('button', { name: '确认删除', exact: true }).click();
+  await presets.getByRole('radio', { name: '空白预设', exact: true }).waitFor({ state: 'detached' });
+  assert.equal((await registry.get('panel::$current')).items.length, 8);
+  const viewport = await page.context().newCDPSession(page);
+  await viewport.send('Emulation.setDeviceMetricsOverride', { width: 560, height: 780, deviceScaleFactor: 1, mobile: false });
+  assert.ok(await panel.evaluate(element => element.scrollWidth <= element.clientWidth), 'narrow panel does not overflow');
+  await page.screenshot({ path: path.join(artifacts, 'configuration-panel-narrow.png') });
+  await viewport.detach();
+  await app.close(); app = undefined;
+  app = await electron.launch({ args: [path.resolve('apps/desktop'), '--data-dir', dataDir], cwd: root, env });
+  const restarted = await app.firstWindow();
+  await restarted.getByRole('toolbar').getByRole('button', { name: '配置', exact: true }).click();
+  assert.equal(await restarted.getByRole('slider').inputValue(), '75');
+  assert.equal((await new ResourceRegistry(dataDir).get('panel::$current')).items.length, 8);
+  const restartedPanel = restarted.getByRole('region', { name: '配置面板', exact: true });
+  for (let index = 0; index < 2; index++) {
+    await restartedPanel.getByRole('button', { name: '删除当前预设', exact: true }).click();
+    await restartedPanel.getByRole('button', { name: '确认删除', exact: true }).click();
+    await restartedPanel.getByRole('button', { name: '确认删除', exact: true }).waitFor({ state: 'detached' });
+  }
+  await restartedPanel.getByText('新建一个预设，再添加你需要的组件。', { exact: true }).waitFor();
+  await restartedPanel.getByRole('button', { name: '新建预设', exact: true }).click();
+  await restartedPanel.getByLabel('预设名称', { exact: true }).fill('全新面板');
+  await restartedPanel.locator('form').getByRole('button', { name: '新建预设', exact: true }).click();
+  await restartedPanel.getByRole('radio', { name: '全新面板', exact: true }).waitFor();
+  await restartedPanel.getByText('预设还是空的，添加组件开始搭建。', { exact: true }).waitFor();
+  assert.deepEqual(errors, []);
+  console.log('Configuration desktop smoke passed: single preset selector, all control types, AI instructions, resources, independent structure, copy/delete, autosave, narrow layout and restart.');
+} catch (error) {
+  if (app) { const page = await app.firstWindow(); await page.screenshot({ path: path.join(artifacts, 'configuration-failure.png') }); console.error(await page.locator('body').innerText()); }
+  throw error;
+} finally {
+  if (app) await app.close();
+  assert.match(path.relative(path.resolve(tmpdir()), path.resolve(root)), /^dockyard-configuration-[^/\\]+$/);
+  await fs.rm(root, { recursive: true, force: true });
+}

@@ -1,0 +1,14 @@
+{
+  "schemaVersion": 1,
+  "id": "fx-library",
+  "type": "folder",
+  "name": "FX Library",
+  "source": { "path": "D:/Assets/FX" },
+  "overrides": [
+    {
+      "relativePath": "Smoke/002511_soft.png",
+      "aliases": ["轻烟雾"],
+      "tags": ["二维", "烟雾"]
+    }
+  ]
+}

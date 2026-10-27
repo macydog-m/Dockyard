@@ -1,0 +1,23 @@
+{
+  "schemaVersion": 1,
+  "revision": 1,
+  "id": "demo",
+  "type": "file",
+  "name": "Dockyard 连接验证资源",
+  "key": "002511",
+  "source": {
+    "path": "files/002511.txt"
+  },
+  "description": "仅用于连接验收，不是用户真实烟雾素材。",
+  "aliases": [
+    "连接示例"
+  ],
+  "tags": [
+    "demo",
+    "connection-test"
+  ],
+  "metadata": {
+    "demo": true
+  },
+  "enabled": true
+}

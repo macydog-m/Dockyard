@@ -1,0 +1,13 @@
+{
+  "schemaVersion": 1,
+  "revision": 1,
+  "activeWorkspaceId": "default",
+  "workspaceIds": [
+    "default"
+  ],
+  "componentIds": [
+    "demo",
+    "palette",
+    "fx-rules"
+  ]
+}

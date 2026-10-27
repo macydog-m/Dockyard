@@ -1,0 +1,324 @@
+{
+  "schemaVersion": 1,
+  "reviewedOn": "2026-10-18",
+  "note": "Previous uncredited design exports were replaced with fixed official sources or independent geometry. This manifest does not claim an established provenance chain for every historical export.",
+  "upstream": {
+    "lucide": {
+      "repository": "lucide-icons/lucide",
+      "commit": "1ef60af944de207e0d5176905a0759ba12e6ee8d",
+      "licenseFile": "LICENSES/lucide.txt"
+    },
+    "phosphor": {
+      "repository": "phosphor-icons/core",
+      "commit": "2b75f3ad12b420c9504ef05df8d2564a28f8500e",
+      "licenseFile": "LICENSES/phosphor.txt"
+    }
+  },
+  "files": [
+    {
+      "file": "canvasimg.svg",
+      "source": "Dockyard independently generated circles / regular point grid",
+      "license": "MIT",
+      "sha256": "558e50b14bf6116e1a559b52dcd610686e9922c9154c742e28035225f3895baa"
+    },
+    {
+      "file": "canvasimg1.svg",
+      "source": "Dockyard independently generated circles / regular point grid",
+      "license": "MIT",
+      "sha256": "1aef5f5e062fcebbe40cd490cd356210bec27db8b7e0c4a8347e645d1b50740d"
+    },
+    {
+      "file": "canvasimg3.svg",
+      "source": "Dockyard independently generated circles / regular point grid",
+      "license": "MIT",
+      "sha256": "2d6e661e0ad153e46c90558fbecbaafb06813041b739274d16564902711aa2ca"
+    },
+    {
+      "file": "canvasimgCircleDot.svg",
+      "source": "https://github.com/lucide-icons/lucide/blob/1ef60af944de207e0d5176905a0759ba12e6ee8d/icons/circle-dot.svg",
+      "license": "ISC",
+      "upstreamSha256": "c263f6a08a089c06ad40f408ad5da9100359ab52d379e6c571cd7c5bd74eaa87",
+      "sha256": "956feb364d6cc6713c1ddb69a2b96b6ef801989401030848f0b63f4ede7c9262",
+      "changes": [
+        "size",
+        "color",
+        "stroke width"
+      ]
+    },
+    {
+      "file": "canvasimgGitBranch.svg",
+      "source": "https://github.com/lucide-icons/lucide/blob/1ef60af944de207e0d5176905a0759ba12e6ee8d/icons/git-branch.svg",
+      "license": "ISC",
+      "upstreamSha256": "041f04acc8f92657b849540f0440e2e85d0df0b8da2365611e81b9bebfafc4eb",
+      "sha256": "ab28b5257109f4af76f1a762c7a41748ec9cfe4076f3c82ce923b371a7506f65",
+      "changes": [
+        "size",
+        "color",
+        "stroke width"
+      ]
+    },
+    {
+      "file": "canvasimgHand.svg",
+      "source": "https://github.com/lucide-icons/lucide/blob/1ef60af944de207e0d5176905a0759ba12e6ee8d/icons/hand.svg",
+      "license": "ISC",
+      "upstreamSha256": "fe3771fa2f0a9a3c7736164c9a855beefacc02548084ac1d6fc8da8a8a9180b0",
+      "sha256": "b308e2b4cbdbcf1030211f9fd4f5b42f7ed1f16f0bd9a704de0e90c51e8ce6b7",
+      "changes": [
+        "size",
+        "color",
+        "stroke width"
+      ]
+    },
+    {
+      "file": "canvasimgIcon.svg",
+      "source": "https://github.com/phosphor-icons/core/blob/2b75f3ad12b420c9504ef05df8d2564a28f8500e/assets/bold/dots-three-bold.svg",
+      "license": "MIT",
+      "upstreamSha256": "5bd06c9754d075b409e3259350c9abc9ec106ffb3b6f3cd451f6419271163bc1",
+      "sha256": "acad78a56977fcbbbbc3f470971d1b245105f9979e2946e7760c56fa89a29778",
+      "changes": [
+        "size",
+        "color"
+      ]
+    },
+    {
+      "file": "canvasimgIcon1.svg",
+      "source": "https://github.com/phosphor-icons/core/blob/2b75f3ad12b420c9504ef05df8d2564a28f8500e/assets/regular/x.svg",
+      "license": "MIT",
+      "upstreamSha256": "7397b15e1fa66eaf6ff9b59fe91d483cb5c3bcf75b2fe052097ab6f0593b513a",
+      "sha256": "8da32a4e0632251c4f46c4045da16629bf697fb187861989f76aaf998a8b30ea",
+      "changes": [
+        "size",
+        "color"
+      ]
+    },
+    {
+      "file": "canvasimgMinimize2.svg",
+      "source": "https://github.com/lucide-icons/lucide/blob/1ef60af944de207e0d5176905a0759ba12e6ee8d/icons/minimize-2.svg",
+      "license": "ISC AND MIT",
+      "upstreamSha256": "1150437d5a870321c59b7ebca2e1bc3f6227f0fa03dd10484ab384dfe5110739",
+      "sha256": "1127a4c894d738b3b14a3c1e18c68e700cacd72fe3196567fe7f9fd73d9964db",
+      "changes": [
+        "size",
+        "color",
+        "stroke width"
+      ]
+    },
+    {
+      "file": "canvasimgMinus.svg",
+      "source": "https://github.com/lucide-icons/lucide/blob/1ef60af944de207e0d5176905a0759ba12e6ee8d/icons/minus.svg",
+      "license": "ISC AND MIT",
+      "upstreamSha256": "a0c743ab6dbf545d8a6e19ef3874f48ede686ce68d25e231bd81f540d97b1f19",
+      "sha256": "aacb1b7b7aad3923456980c6f3c10feacd5c76191cffecca27804b1bc8188eab",
+      "changes": [
+        "size",
+        "color",
+        "stroke width"
+      ]
+    },
+    {
+      "file": "canvasimgMousePointer2.svg",
+      "source": "https://github.com/lucide-icons/lucide/blob/1ef60af944de207e0d5176905a0759ba12e6ee8d/icons/mouse-pointer-2.svg",
+      "license": "ISC",
+      "upstreamSha256": "a87128b1d33024c22ab598d1ce313081ce8942efd1a70274215bcc53421b7c7e",
+      "sha256": "a97cd49058f79ef7945686e05472d4bb1e750335932e0248b6f17d79a59fd535",
+      "changes": [
+        "size",
+        "color",
+        "stroke width"
+      ]
+    },
+    {
+      "file": "canvasimgNotebookPen.svg",
+      "source": "https://github.com/lucide-icons/lucide/blob/1ef60af944de207e0d5176905a0759ba12e6ee8d/icons/notebook-pen.svg",
+      "license": "ISC",
+      "upstreamSha256": "56705c35e839977bd6f133d7ca4e9c93a6eea563c89e4be125efd0a32e1fa041",
+      "sha256": "31c4bfad420f463290abb8d425c6a4cdbf745ad10fa2d7fecda28b3efb57f31a",
+      "changes": [
+        "size",
+        "color",
+        "stroke width"
+      ]
+    },
+    {
+      "file": "canvasimgNotebookPen1.svg",
+      "source": "https://github.com/lucide-icons/lucide/blob/1ef60af944de207e0d5176905a0759ba12e6ee8d/icons/notebook-pen.svg",
+      "license": "ISC",
+      "upstreamSha256": "56705c35e839977bd6f133d7ca4e9c93a6eea563c89e4be125efd0a32e1fa041",
+      "sha256": "4c22b8a7812d373c44be325bd23f051966d9dc32a593f36642e173424a48b82a",
+      "changes": [
+        "size",
+        "color",
+        "stroke width"
+      ]
+    },
+    {
+      "file": "canvasimgPencil.svg",
+      "source": "https://github.com/lucide-icons/lucide/blob/1ef60af944de207e0d5176905a0759ba12e6ee8d/icons/pencil.svg",
+      "license": "ISC",
+      "upstreamSha256": "7e1ca7a6f5c1eb949671df762f2baadd32f5bd841d43153c3a15279af7d78d0c",
+      "sha256": "8a6047452932e9cb9108c54a7a6abfa6de02926a17ab7fadba2c1bcc7b137898",
+      "changes": [
+        "size",
+        "color",
+        "stroke width"
+      ]
+    },
+    {
+      "file": "canvasimgPlus.svg",
+      "source": "https://github.com/lucide-icons/lucide/blob/1ef60af944de207e0d5176905a0759ba12e6ee8d/icons/plus.svg",
+      "license": "ISC AND MIT",
+      "upstreamSha256": "7f6af73bf1ff6c4bca3f18351c8d1bdec6749c0c2530c4de5da85d520c21df17",
+      "sha256": "bb48cc0a01cae01c159383bec7bcc833538a93391341d62c19b395414d14c415",
+      "changes": [
+        "size",
+        "color",
+        "stroke width"
+      ]
+    },
+    {
+      "file": "canvasimgScan.svg",
+      "source": "https://github.com/lucide-icons/lucide/blob/1ef60af944de207e0d5176905a0759ba12e6ee8d/icons/scan.svg",
+      "license": "ISC",
+      "upstreamSha256": "c77f0e634b2451a14a262a59b61d75bbcea3994b16eeba1f5753e86b33282a4d",
+      "sha256": "1c49060364fdd889acaaae64fbc32abbe8d88661988979ab15fd74006f97d306",
+      "changes": [
+        "size",
+        "color",
+        "stroke width"
+      ]
+    },
+    {
+      "file": "canvasimgStickyNote.svg",
+      "source": "https://github.com/lucide-icons/lucide/blob/1ef60af944de207e0d5176905a0759ba12e6ee8d/icons/sticky-note.svg",
+      "license": "ISC",
+      "upstreamSha256": "a1370d25eb7dc9c42ca4a69adb82818fec950f1d441f88fd3ea84cd6ac10f875",
+      "sha256": "c8ff40651feea6e840a7085ea316e06eacd86be1e770455a49012e76c972740b",
+      "changes": [
+        "size",
+        "color",
+        "stroke width"
+      ]
+    },
+    {
+      "file": "canvasimgWorkflow.svg",
+      "source": "https://github.com/lucide-icons/lucide/blob/1ef60af944de207e0d5176905a0759ba12e6ee8d/icons/workflow.svg",
+      "license": "ISC",
+      "upstreamSha256": "ae99ea8f56a2835a2cca35b2fbb57643ab73443610970dba23e24bd9df75cfec",
+      "sha256": "5f0c11686d25bb5587af42ad2c46167db6da557fdb36e71bd7ac9ebbff63b4c1",
+      "changes": [
+        "size",
+        "color",
+        "stroke width"
+      ]
+    },
+    {
+      "file": "noteimgArrowUpRight.svg",
+      "source": "https://github.com/lucide-icons/lucide/blob/1ef60af944de207e0d5176905a0759ba12e6ee8d/icons/arrow-up-right.svg",
+      "license": "ISC AND MIT",
+      "upstreamSha256": "50b2503b9d11881142255466b7e3461d022b919735841c321d72003ac9959fe1",
+      "sha256": "bf4c36eccf4ad55f35bf4f2761ef81aa2e5cbe82ee56c63e1657736465dea3e9",
+      "changes": [
+        "size",
+        "color",
+        "stroke width"
+      ]
+    },
+    {
+      "file": "noteimgCheck.svg",
+      "source": "https://github.com/lucide-icons/lucide/blob/1ef60af944de207e0d5176905a0759ba12e6ee8d/icons/check.svg",
+      "license": "ISC AND MIT",
+      "upstreamSha256": "7f33acc9a77a61659531044525fc008edebe215bf4dcf1c789c8674ad3277db0",
+      "sha256": "abffe1f061cf88035c12445188103e54ff8f195ca064c4dc50085326d1a6a14b",
+      "changes": [
+        "size",
+        "color",
+        "stroke width"
+      ]
+    },
+    {
+      "file": "noteimgGitBranch.svg",
+      "source": "https://github.com/lucide-icons/lucide/blob/1ef60af944de207e0d5176905a0759ba12e6ee8d/icons/git-branch.svg",
+      "license": "ISC",
+      "upstreamSha256": "041f04acc8f92657b849540f0440e2e85d0df0b8da2365611e81b9bebfafc4eb",
+      "sha256": "e93ea20afbe7cf86fe498aecbf260d055723008629c83359ce1ee41da30ed185",
+      "changes": [
+        "size",
+        "color",
+        "stroke width"
+      ]
+    },
+    {
+      "file": "noteimgIcon.svg",
+      "source": "https://github.com/phosphor-icons/core/blob/2b75f3ad12b420c9504ef05df8d2564a28f8500e/assets/bold/dots-three-bold.svg",
+      "license": "MIT",
+      "upstreamSha256": "5bd06c9754d075b409e3259350c9abc9ec106ffb3b6f3cd451f6419271163bc1",
+      "sha256": "acad78a56977fcbbbbc3f470971d1b245105f9979e2946e7760c56fa89a29778",
+      "changes": [
+        "size",
+        "color"
+      ]
+    },
+    {
+      "file": "noteimgIcon1.svg",
+      "source": "https://github.com/phosphor-icons/core/blob/2b75f3ad12b420c9504ef05df8d2564a28f8500e/assets/regular/x.svg",
+      "license": "MIT",
+      "upstreamSha256": "7397b15e1fa66eaf6ff9b59fe91d483cb5c3bcf75b2fe052097ab6f0593b513a",
+      "sha256": "8da32a4e0632251c4f46c4045da16629bf697fb187861989f76aaf998a8b30ea",
+      "changes": [
+        "size",
+        "color"
+      ]
+    },
+    {
+      "file": "noteimgNotebookPen.svg",
+      "source": "https://github.com/lucide-icons/lucide/blob/1ef60af944de207e0d5176905a0759ba12e6ee8d/icons/notebook-pen.svg",
+      "license": "ISC",
+      "upstreamSha256": "56705c35e839977bd6f133d7ca4e9c93a6eea563c89e4be125efd0a32e1fa041",
+      "sha256": "31c4bfad420f463290abb8d425c6a4cdbf745ad10fa2d7fecda28b3efb57f31a",
+      "changes": [
+        "size",
+        "color",
+        "stroke width"
+      ]
+    },
+    {
+      "file": "noteimgNotebookPen1.svg",
+      "source": "https://github.com/lucide-icons/lucide/blob/1ef60af944de207e0d5176905a0759ba12e6ee8d/icons/notebook-pen.svg",
+      "license": "ISC",
+      "upstreamSha256": "56705c35e839977bd6f133d7ca4e9c93a6eea563c89e4be125efd0a32e1fa041",
+      "sha256": "27433f271fa15cc9b7a58afd1a0cd7cfcf930ef15f984bd5f4a8c3a90e819e50",
+      "changes": [
+        "size",
+        "color",
+        "stroke width"
+      ]
+    },
+    {
+      "file": "noteimgPlus.svg",
+      "source": "https://github.com/lucide-icons/lucide/blob/1ef60af944de207e0d5176905a0759ba12e6ee8d/icons/plus.svg",
+      "license": "ISC AND MIT",
+      "upstreamSha256": "7f6af73bf1ff6c4bca3f18351c8d1bdec6749c0c2530c4de5da85d520c21df17",
+      "sha256": "bb48cc0a01cae01c159383bec7bcc833538a93391341d62c19b395414d14c415",
+      "changes": [
+        "size",
+        "color",
+        "stroke width"
+      ]
+    },
+    {
+      "file": "noteimgWorkflow.svg",
+      "source": "https://github.com/lucide-icons/lucide/blob/1ef60af944de207e0d5176905a0759ba12e6ee8d/icons/workflow.svg",
+      "license": "ISC",
+      "upstreamSha256": "ae99ea8f56a2835a2cca35b2fbb57643ab73443610970dba23e24bd9df75cfec",
+      "sha256": "bf5fa0d2cd5c80643b6858d0605ba24739450fb369af0d22188906ae744aa1dd",
+      "changes": [
+        "size",
+        "color",
+        "stroke width"
+      ]
+    }
+  ],
+  "removedUnused": [
+    "canvasimg2.svg"
+  ]
+}

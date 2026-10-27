@@ -1,0 +1,17 @@
+html,body { margin:0; overflow:hidden; cursor:crosshair; user-select:none; font:13px 'Segoe UI','Microsoft YaHei',sans-serif; }
+canvas { position:fixed; inset:0; width:100%; height:100%; }
+#selection { display:none; position:fixed; border:1px solid #c4cedc; box-shadow:0 0 0 99999px rgb(20 19 26 / 42%),inset 0 0 0 1px rgb(244 237 231 / 18%); pointer-events:none; box-sizing:border-box; }
+#hint {
+  position:fixed; top:18px; left:18px; padding:12px 16px; border-radius:12px;
+  color:#eee9ed; background:rgb(45 47 56 / 84%);
+  background-image:linear-gradient(135deg,rgb(194 181 180 / 8%),rgb(158 175 198 / 5%));
+  border:1px solid rgb(222 216 228 / 22%); border-top-color:rgb(239 230 233 / 32%);
+  backdrop-filter:blur(24px) saturate(.8);
+  pointer-events:none; white-space:pre-line; line-height:1.7;
+  box-shadow:inset 0 1px 0 rgb(244 237 231 / 6%),0 8px 24px rgb(19 17 26 / 22%);
+}
+@media(prefers-reduced-transparency:reduce) { #hint { background:#2d2f38; backdrop-filter:none; } }
+@media(forced-colors:active) {
+  #hint { background:Canvas; color:CanvasText; border:1px solid CanvasText; backdrop-filter:none; box-shadow:none; }
+  #selection { border-color:Highlight; }
+}

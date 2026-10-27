@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "revision": 1,
+  "id": "palette",
+  "name": "My Palette",
+  "type": "palette",
+  "enabled": true,
+  "entries": [
+    {
+      "key": "warm-orange",
+      "name": "Warm Orange",
+      "value": "#E98C3A",
+      "aliases": [
+        "暖橙色",
+        "常用暖橙色"
+      ]
+    },
+    {
+      "key": "cream",
+      "name": "Cream",
+      "value": "#FFF4DD",
+      "aliases": [
+        "奶油白"
+      ]
+    }
+  ]
+}

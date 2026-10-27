@@ -1,0 +1,13 @@
+{
+  "schemaVersion": 1,
+  "revision": 1,
+  "id": "fx-rules",
+  "type": "instruction",
+  "enabled": true,
+  "key": "fx-rules",
+  "name": "FX Design Rules",
+  "aliases": [
+    "FX 规则"
+  ],
+  "content": "保持轮廓清晰，优先使用轻量效果。此文本仅为演示规则。"
+}

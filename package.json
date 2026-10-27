@@ -1,0 +1,48 @@
+{
+  "name": "dockyard",
+  "version": "0.1.0-beta.3",
+  "private": true,
+  "type": "module",
+  "workspaces": [
+    "packages/*",
+    "apps/desktop"
+  ],
+  "engines": {
+    "node": ">=24 <25"
+  },
+  "scripts": {
+    "build": "npm run version:check && npm run build -w @dockyard/shared && npm run build -w @dockyard/core && npm run build -w @dockyard/mcp",
+    "test": "npm run build && node --test --test-timeout=60000 tests/*.test.mjs",
+    "bench:search": "npm run build && node --expose-gc scripts/benchmark-search.mjs",
+    "mcp:demo": "node packages/mcp/dist/index.js --data-dir examples/demo-data",
+    "desktop:build": "npm run build && npm run build -w @dockyard/desktop",
+    "desktop": "npm run desktop:build && electron apps/desktop",
+    "desktop:smoke": "npm run desktop:build && node scripts/desktop-smoke.mjs",
+    "desktop:design-smoke": "npm run desktop:build && node scripts/design-smoke.mjs",
+    "desktop:theme-smoke": "npm run desktop:build && node scripts/theme-smoke.mjs",
+    "desktop:language-smoke": "npm run desktop:build && node scripts/language-smoke.mjs",
+    "desktop:pack": "npm run build && node scripts/package-desktop.mjs",
+    "desktop:installer": "npm run build && node scripts/build-installer.mjs",
+    "desktop:connect-smoke": "node scripts/desktop-connect-smoke.mjs",
+    "desktop:widget-smoke": "npm run desktop:build && node scripts/widget-smoke.mjs",
+    "version:check": "node scripts/version.mjs --check",
+    "version:set": "node scripts/version.mjs",
+    "privacy:check": "node scripts/privacy-check.mjs",
+    "desktop:portable": "node scripts/build-portable.mjs",
+    "desktop:portable-smoke": "node scripts/portable-smoke.mjs",
+    "desktop:configuration-smoke": "npm run desktop:build && node scripts/configuration-smoke.mjs"
+  },
+  "devDependencies": {
+    "@electron/packager": "20.3.0",
+    "@modelcontextprotocol/client": "2.3.1",
+    "@types/node": "^24.0.0",
+    "@types/react": "19.3.0",
+    "@types/react-dom": "19.3.0",
+    "electron": "44.9.3",
+    "electron-builder": "26.15.3",
+    "esbuild": "0.28.2",
+    "playwright": "1.64.1",
+    "typescript": "5.9.3"
+  },
+  "license": "MIT"
+}

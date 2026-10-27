@@ -1,0 +1,6 @@
+<!-- Source: https://github.com/lucide-icons/lucide/blob/1ef60af944de207e0d5176905a0759ba12e6ee8d/icons/mouse-pointer-2.svg
+     SPDX-License-Identifier: ISC; full notices: LICENSES/lucide.txt
+     Adapted only for Dockyard size, color, and stroke width. -->
+<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#CDD6CF" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round" style="display:block" overflow="visible">
+  <path d="M4.037 4.688a.495.495 0 0 1 .651-.651l16 6.5a.5.5 0 0 1-.063.947l-6.124 1.58a2 2 0 0 0-1.438 1.435l-1.579 6.126a.5.5 0 0 1-.947.063z" />
+</svg>

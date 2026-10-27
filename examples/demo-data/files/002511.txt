@@ -1,0 +1,3 @@
+Dockyard MCP 测试资源（非真实素材）
+Asset ID: 002511
+Verification: DOCKYARD_ASSET_002511_FOUND

@@ -1,0 +1,24 @@
+name: Bug report / 问题反馈
+description: 报告可复现的问题，请勿上传私人资源或凭据。
+title: "[Bug] "
+body:
+  - type: textarea
+    id: environment
+    attributes:
+      label: 使用环境
+      description: Dockyard 版本、Windows 版本、AI 客户端版本。
+    validations:
+      required: true
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: 复现步骤与实际结果
+      description: 请使用虚构资源，删除日志和截图中的个人路径、邮箱、密钥及配置内容。
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: 预期结果
+    validations:
+      required: true

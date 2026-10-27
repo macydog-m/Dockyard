@@ -1,0 +1,9 @@
+<!-- Source: https://github.com/lucide-icons/lucide/blob/1ef60af944de207e0d5176905a0759ba12e6ee8d/icons/scan.svg
+     SPDX-License-Identifier: ISC; full notices: LICENSES/lucide.txt
+     Adapted only for Dockyard size, color, and stroke width. -->
+<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#CDD6CF" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round" style="display:block" overflow="visible">
+  <path d="M3 7V5a2 2 0 0 1 2-2h2" />
+  <path d="M17 3h2a2 2 0 0 1 2 2v2" />
+  <path d="M21 17v2a2 2 0 0 1-2 2h-2" />
+  <path d="M7 21H5a2 2 0 0 1-2-2v-2" />
+</svg>

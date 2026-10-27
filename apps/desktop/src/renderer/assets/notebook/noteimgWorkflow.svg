@@ -1,0 +1,8 @@
+<!-- Source: https://github.com/lucide-icons/lucide/blob/1ef60af944de207e0d5176905a0759ba12e6ee8d/icons/workflow.svg
+     SPDX-License-Identifier: ISC; full notices: LICENSES/lucide.txt
+     Adapted only for Dockyard size, color, and stroke width. -->
+<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#A8B0AA" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round" style="display:block" overflow="visible">
+  <rect width="8" height="8" x="3" y="3" rx="2" />
+  <path d="M7 11v4a2 2 0 0 0 2 2h4" />
+  <rect width="8" height="8" x="13" y="13" rx="2" />
+</svg>
